@@ -22,8 +22,7 @@ enum class TaskStatus{
     RUNNING,
     SUCCESS,
     FAILURE,
-    WAITING,
-    STANDBY
+    WAITING
 };
 
 // Funciones adicionales
@@ -54,7 +53,6 @@ class Nodo{
         void setStatusSuccess() { status = TaskStatus::SUCCESS; }
         void setStatusWaiting() { status = TaskStatus::WAITING; }
         void setStatusFailure() { status = TaskStatus::FAILURE; }
-        void setStatusStandBy() { status = TaskStatus::STANDBY; }
 
         TaskStatus invoke(std::vector<std::vector<int>> mapa, EntityManager& em, Entity& e, IASystem& iaSystem, BombSystem& BombSystem, MapSystem& mapsystem, std::chrono::high_resolution_clock::time_point& end);
         virtual TaskStatus run(std::vector<std::vector<int>> mapa, EntityManager& em, Entity& e, IASystem& iaSystem, BombSystem& BombSystem, MapSystem& mapsystem, std::chrono::high_resolution_clock::time_point& end) = 0;

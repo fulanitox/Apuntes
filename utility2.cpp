@@ -209,10 +209,22 @@ TaskStatus NodoPrimerNivel::run(std::vector<std::vector<int>> mapa, EntityManage
         }
     }
 
-    for(auto& action : childs){
-        action->setStatusWaiting();
+    bool checkAllStatus = true;
+
+    for(auto& child : childs) {
+        if(child->getStatus() != TaskStatus::SUCCESS) {
+            checkAllStatus = false;
+            break;
+        }
+    }
+ 
+    if(checkAllStatus){
+        for(auto& action : childs){
+            action->setStatusWaiting();
+        }
     }
 
+    //Aqui habria que ver que devolvemos, depende si hay un fallo o lo que sea
     return TrueFalse::TRUE;
 }
 
